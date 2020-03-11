@@ -25,7 +25,9 @@ prime_paths = []        #all simple paths that are not subpaths of any other sim
 def add_nodes_to_simple_paths(graph):       #since each node by itself is a simple path, they are added the the list
     global potential_simple_paths
     for node in graph:
-        potential_simple_paths.append(node.number)
+        potential_simple_paths.append([node.number])
+
+add_nodes_to_simple_paths(graph)
 
 def find_potential_simple_paths(node, track):
     global potential_simple_paths
@@ -67,7 +69,7 @@ for path in illegal_paths:      #removes illegal paths from potential list, to f
 
 simple_paths = potential_simple_paths
 
-print("Simple Paths: ")
+print("There are", len(simple_paths), " Simple Paths: ")
 print(simple_paths)
 
 def if_subset(path1, path2):        #checks for pubpaths in simple paths
@@ -87,7 +89,7 @@ def is_prime_path(path, simplepaths):       #checks if a given simple path is a 
             return False
     return True
 
-def find_prime_paths(simplepaths):      #checks all paths in simple paths are prime paths
+def find_prime_paths(simplepaths):      #checks if all paths in simple paths are prime paths
     global prime_paths
     for i in range (len(simplepaths)):
         potential_primepath = simplepaths[i]
@@ -95,5 +97,5 @@ def find_prime_paths(simplepaths):      #checks all paths in simple paths are pr
             prime_paths.append(potential_primepath)
 
 find_prime_paths(simple_paths)
-print("Prime Paths: ")
+print("There are", len(prime_paths), "Prime Paths: ")
 print(prime_paths)
